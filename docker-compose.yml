@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  ionic-app:
+    build: .
+    container_name: ionic-supabase-app
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Puedes añadir un proxy inverso como Nginx si lo necesitas
+  # nginx:
+  #   image: nginx:alpine
+  #   container_name: ionic-nginx
+  #   restart: unless-stopped
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #   volumes:
+  #     - ./nginx.conf:/etc/nginx/conf.d/default.conf
+  #     - ./ssl:/etc/nginx/ssl
+  #   depends_on:
+  #     - ionic-app
+  #   networks:
+  #     - app-network
+
+networks:
+  app-network:
+    driver: bridge

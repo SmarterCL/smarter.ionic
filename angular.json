@@ -1,0 +1,227 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "ionic-supabase-app": {
+      "projectType": "application",
+      "schematics": {
+        "@angular-devkit/build-angular:application": {
+          "index": "src/index.html",
+          "main": "src/main.ts",
+          "polyfills": "src/polyfills.ts",
+          "tsconfig": "tsconfig.app.json",
+          "inlineStyleLanguage": "scss",
+          "assets": [
+            "src/favicon.ico",
+            "src/assets"
+          ],
+          "styles": [
+            "src/theme/variables.scss",
+            "src/global.scss",
+            "node_modules/@ionic/angular/css/core.css",
+            "node_modules/@ionic/angular/css/normalize.css",
+            "node_modules/@ionic/angular/css/structure.css",
+            "node_modules/@ionic/angular/css/typography.css",
+            "node_modules/@ionic/angular/css/padding.css",
+            "node_modules/@ionic/angular/css/float-elements.css",
+            "node_modules/@ionic/angular/css/text-alignment.css",
+            "node_modules/@ionic/angular/css/text-transformation.css",
+            "node_modules/@ionic/angular/css/flex-utils.css"
+          ],
+          "scripts": [
+            {
+              "input": "node_modules/@ionic/pwa-elements/loader/index.js",
+              "inject": false,
+              "bundleName": "polyfills"
+            }
+          ]
+        },
+        "@angular-devkit/build-angular:karma": {
+          "karma": "karma.conf.js",
+          "polyfills": "src/polyfills.ts"
+        }
+      },
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "www",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.app.json",
+            "aot": true,
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/theme/variables.scss",
+              "src/global.scss",
+              "node_modules/@ionic/angular/css/core.css",
+              "node_modules/@ionic/angular/css/normalize.css",
+              "node_modules/@ionic/angular/css/structure.css",
+              "node_modules/@ionic/angular/css/typography.css",
+              "node_modules/@ionic/angular/css/padding.css",
+              "node_modules/@ionic/angular/css/float-elements.css",
+              "node_modules/@ionic/angular/css/text-alignment.css",
+              "node_modules/@ionic/angular/css/text-transformation.css",
+              "node_modules/@ionic/angular/css/flex-utils.css"
+            ],
+            "scripts": [
+              {
+                "input": "node_modules/@ionic/pwa-elements/loader/index.js",
+                "inject": false,
+                "bundleName": "polyfills"
+              }
+            ]
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "serviceWorker": false
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "ionic-supabase-app:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ionic-supabase-app:build:production"
+            },
+            "development": {
+              "browserTarget": "ionic-supabase-app:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "ionic-supabase-app:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src/test.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.spec.json",
+            "karmaConfig": "karma.conf.js",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/theme/variables.scss"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "ionic-supabase-app-e2e": {
+      "projectType": "application",
+      "root": "e2e/",
+      "sourceRoot": "e2e/src",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "e2e/protractor.conf.js",
+            "devServerTarget": "ionic-supabase-app:serve:development"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "ionic-supabase-app:serve:production"
+            },
+            "ci": {
+              "devServerTarget": "ionic-supabase-app:serve:ci"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "tsconfig.app.json",
+              "tsconfig.spec.json",
+              "e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "ionic-supabase-app",
+  "cli": {
+    "analytics": false
+  },
+  "schematics": {
+    "@angular-devkit/build-angular:component": {
+      "style": "scss"
+    },
+    "@angular-devkit/build-angular:application": {
+      "index": "src/index.html",
+      "main": "src/main.ts",
+      "polyfills": "src/polyfills.ts",
+      "tsconfig": "tsconfig.app.json",
+      "inlineStyleLanguage": "scss",
+      "assets": [
+        "src/favicon.ico",
+        "src/assets"
+      ],
+      "styles": [
+        "src/theme/variables.scss",
+        "src/global.scss"
+      ],
+      "scripts": []
+    }
+  }
+}
