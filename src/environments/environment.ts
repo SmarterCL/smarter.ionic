@@ -3,25 +3,25 @@
 export const environment = {
   production: false,
   
-  // Supabase Configuration
-  supabaseUrl: 'https://rjfcmmzjlguiititkmyh.supabase.co',
-  supabaseKey: 'sb_publishable_kEijPTO517V10LUFHx1_Pw_M4sAUNi1',
+  // Supabase Configuration - Now using VITE variables
+  supabaseUrl: import.meta.env.VITE_SUPABASE_URL || 'https://rjfcmmzjlguiititkmyh.supabase.co',
+  supabaseKey: import.meta.env.VITE_SUPABASE_ANON_KEY || 'sb_publishable_kEijPTO517V10LUFHx1_Pw_M4sAUNi1',
   
   // MCP (Mistral Control Plane) Configuration
-  mcpServerUrl: 'https://mcp.supabase.com/mcp?project_ref=rjfcmmzjlguiititkmyh',
-  mcpFeatures: 'database,docs,account,debugging,functions,development,branching,storage',
+  mcpServerUrl: import.meta.env.VITE_MCP_SERVER_URL || 'https://mcp.supabase.com/mcp?project_ref=rjfcmmzjlguiititkmyh',
+  mcpFeatures: import.meta.env.VITE_MCP_FEATURES || 'database,docs,account,debugging,functions,development,branching,storage',
   
   // App Configuration
-  appName: 'SmarterOS Ionic Template',
-  appVersion: '1.0.0',
+  appName: import.meta.env.VITE_APP_NAME || 'SmarterOS Ionic Template',
+  appVersion: import.meta.env.VITE_APP_VERSION || '1.0.0',
   
   // API Endpoints
-  apiBaseUrl: 'https://api.smarteros.com/v1',
+  apiBaseUrl: import.meta.env.VITE_API_BASE_URL || 'https://api.smarteros.com/v1',
   
   // Feature Flags
-  enableMCP: true,
+  enableMCP: import.meta.env.VITE_ENABLE_MCP !== 'false',
   enableSupabaseAuth: true,
-  enableAnalytics: false,
+  enableAnalytics: import.meta.env.VITE_ENABLE_ANALYTICS !== 'false',
   
   // Storage Configuration
   storageBucket: 'avatars',
