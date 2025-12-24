@@ -1,0 +1,124 @@
+# Ionic Angular Git Ignore
+
+# Dependencies
+node_modules/
+
+# Build output
+www/
+platforms/
+plugins/
+cordova/
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Environment files
+.env
+.env.local
+.env*.local
+
+# Logs
+tmp/
+*.log
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Ionic specific
+hooks/
+resources/
+
+# Angular specific
+dist/
+.angular/
+
+# Supabase local config
+supabase/config.toml
+
+# Capacitor files
+ios/
+android/
+
+# Coverage directory
+coverage/
+
+# TypeScript cache
+.tscache
+
+# npm debug log
+npm-debug.log*
+
+# Yarn
+.yarn/cache/
+.yarn/unplugged/
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+
+# pnpm
+.pnpm-store/
+
+# Husky
+.husky/_/
+
+# Lint staged
+.lintstagedrc
+
+# Editor files
+*.orig
+*.bak
+*.backup
+
+# Test files
+*.spec.ts
+
+# Production build
+build/
+
+# Firebase
+firebase.json
+.firbaserc
+
+# Netlify
+netlify.toml
+
+# Vercel
+vercel.json
+.now/
+
+# Git conflict files
+*.merge
+*.merge*
+
+# IDE specific
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# MacOS
+.AppleDouble
+LSOverride
+
+# Windows
+Desktop.ini
+
+# Linux
+*nix
+
+# Temporary files
+*.tmp
+*.temp

@@ -1,0 +1,146 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>My Account</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="signOut()">
+        <ion-icon name="log-out-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="account-container">
+    <!-- Avatar Section -->
+    <div class="avatar-section" (click)="uploadAvatar()">
+      <div class="avatar-wrapper">
+        <img *ngIf="avatarUrl; else defaultAvatar" [src]="avatarUrl" alt="Profile Avatar" class="profile-avatar">
+        <ng-template #defaultAvatar>
+          <ion-icon name="person-circle-outline" class="default-avatar"></ion-icon>
+        </ng-template>
+        <div class="avatar-overlay">
+          <ion-icon name="camera-outline"></ion-icon>
+          <span>Change Avatar</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Profile Form -->
+    <form [formGroup]="profileForm" class="profile-form">
+      <ion-list lines="full" class="ion-padding">
+        <ion-item>
+          <ion-label position="stacked">Username</ion-label>
+          <ion-input 
+            formControlName="username" 
+            type="text"
+            placeholder="Your username">
+          </ion-input>
+        </ion-item>
+        
+        <ion-item *ngIf="profileForm.get('username')?.invalid && profileForm.get('username')?.touched">
+          <ion-note color="danger">Username must be at least 3 characters</ion-note>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label position="stacked">Email</ion-label>
+          <ion-input 
+            formControlName="email" 
+            type="email"
+            placeholder="your@email.com">
+          </ion-input>
+        </ion-item>
+        
+        <ion-item *ngIf="profileForm.get('email')?.invalid && profileForm.get('email')?.touched">
+          <ion-note color="danger">Please enter a valid email</ion-note>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label position="stacked">Website (optional)</ion-label>
+          <ion-input 
+            formControlName="website" 
+            type="url"
+            placeholder="https://yourwebsite.com">
+          </ion-input>
+        </ion-item>
+        
+        <ion-item *ngIf="profileForm.get('website')?.invalid && profileForm.get('website')?.touched">
+          <ion-note color="danger">Please enter a valid URL</ion-note>
+        </ion-item>
+      </ion-list>
+      
+      <ion-button 
+        type="button" 
+        expand="block" 
+        shape="round"
+        (click)="updateProfile()"
+        [disabled]="profileForm.invalid || isLoading"
+        class="ion-margin">
+        <ion-icon name="save-outline" slot="start"></ion-icon>
+        Update Profile
+      </ion-button>
+    </form>
+    
+    <!-- MCP Access Section -->
+    <div class="mcp-section ion-padding" *ngIf="!hasMcpAccess">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>MCP Access</ion-card-title>
+          <ion-card-subtitle>Mistral Control Plane</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <p>Request access to advanced MCP features for your account.</p>
+          <ion-button 
+            expand="block" 
+            fill="outline"
+            (click)="requestMcpAccess()"
+            [disabled]="isLoading">
+            <ion-icon name="key-outline" slot="start"></ion-icon>
+            Request MCP Access
+          </ion-button>
+        </ion-card-content>
+      </ion-card>
+    </div>
+    
+    <div class="mcp-section ion-padding" *ngIf="hasMcpAccess">
+      <ion-card color="success">
+        <ion-card-header>
+          <ion-card-title>MCP Access Granted</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p>You have access to Mistral Control Plane features.</p>
+          <ion-icon name="checkmark-circle-outline" class="mcp-approved-icon"></ion-icon>
+        </ion-card-content>
+      </ion-card>
+    </div>
+    
+    <!-- Account Info -->
+    <div class="account-info ion-padding">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>Account Information</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-list>
+            <ion-item>
+              <ion-label>Account Status</ion-label>
+              <ion-badge color="success" slot="end">Active</ion-badge>
+            </ion-item>
+            <ion-item>
+              <ion-label>MCP Integration</ion-label>
+              <ion-badge [color]="hasMcpAccess ? 'success' : 'medium'" slot="end">
+                {{ hasMcpAccess ? 'Enabled' : 'Disabled' }}
+              </ion-badge>
+            </ion-item>
+            <ion-item>
+              <ion-label>Last Updated</ion-label>
+              <ion-note slot="end">{{ profile.updated_at | date:'medium' }}</ion-note>
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+</ion-content>
