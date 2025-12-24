@@ -11,9 +11,7 @@
     "serve": "npm run build && npm start",
     "deploy": "npm run build && pm2 start server.js --name ionic-supabase-app",
     "prebuild": "npm install -g @ionic/cli@latest",
-    "vercel-build": "npm run prebuild && npm run build",
-    "ionic:build": "ionic build --prod",
-    "ionic:serve": "ionic serve"
+    "vercel-build": "npm run prebuild && npm run build"
   },
   "dependencies": {
     "@angular/animations": "^17.0.0",
