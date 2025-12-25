@@ -10,8 +10,7 @@
     "build": "npx ionic build --prod",
     "serve": "npm run build && npm start",
     "deploy": "npm run build && pm2 start server.js --name ionic-supabase-app",
-    "prebuild": "npm install -g @ionic/cli@latest",
-    "vercel-build": "npm run prebuild && npm run build"
+    "vercel-build": "npm run build"
   },
   "dependencies": {
     "@angular/animations": "^17.0.0",
@@ -22,21 +21,23 @@
     "@angular/platform-browser": "^17.0.0",
     "@angular/platform-browser-dynamic": "^17.0.0",
     "@angular/router": "^17.0.0",
+    "@capacitor/cli": "^8.0.0",
+    "@capacitor/core": "^8.0.0",
     "@ionic/angular": "^7.0.0",
-    "express": "^4.18.2",
     "compression": "^1.7.4",
+    "express": "^4.18.2",
     "helmet": "^7.0.0",
     "path": "^0.12.7",
     "rxjs": "~7.8.0",
     "zone.js": "~0.14.0"
   },
   "devDependencies": {
-    "@angular/cli": "^17.0.0",
+    "@analogjs/vite-plugin-angular": "^0.2.0",
     "@angular-devkit/build-angular": "^17.0.0",
-    "nodemon": "^3.0.2",
-    "pm2": "^5.3.0",
+    "@angular/cli": "^17.0.0",
     "@ionic/cli": "^7.0.0",
-    "@analogjs/vite-plugin-angular": "^0.2.0"
+    "nodemon": "^3.0.2",
+    "pm2": "^5.3.0"
   },
   "engines": {
     "node": ">=18.0.0"

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="payment_bakong_template" name="Bakong Payment Template">
+        <t t-name="PaymentBakong">
+            <div class="payment-bakong">
+                <button class="generate-qr">Generar QR</button>
+            </div>
+        </t>
+    </template>
+</odoo>

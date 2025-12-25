@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="bakong_qr_template" name="Bakong QR Template">
+        <t t-name="BakongQR">
+            <div class="bakong-qr-container">
+                <t t-esc="qr_code"/>
+            </div>
+        </t>
+    </template>
+</odoo>
